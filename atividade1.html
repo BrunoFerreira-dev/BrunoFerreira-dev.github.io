@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Atividade 1-Separador de nomes</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    <body class="separadorNomes">
+        <header class="cabecalho">
+            <h1>Atividade 1</h1>
+        </header>
+
+        <div class="centralizar">
+            <div class="bloco-esquerda">
+                <div class="fileira">
+                    <label>Nome Completo:</label>
+                    <input type="text" id="nomeCompleto">
+                    <button class="botao" onclick="separarNomes()">>></button>
+                </div>
+            </div>
+            <div class="bloco-direita">
+                <div class="fileira">
+                    <label>Nome:</label>
+                    <input type="text" id="nome">
+                </div>
+        
+                <div class="fileira">
+                    <label>Sobrenome:</label>
+                    <input type="text" id="sobrenome">
+                </div>
+            </div>
+        </div>
+        
+    <script>
+        function separarNomes(){
+            let nomeCompleto = document.getElementById("nomeCompleto").value;
+            let espaco = nomeCompleto.indexOf(" ")
+
+            if(espaco > -1){
+                let primeiroNome = nomeCompleto.substring(0, espaco);
+                let sobrenome = nomeCompleto.substring(espaco+1);
+
+                document.getElementById("nome").value = primeiroNome;
+                document.getElementById("sobrenome").value = sobrenome;
+            }
+        }
+    </script>
+    </body>
+</html>

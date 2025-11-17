@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Atividade 2-Calcular IMC</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    <body>
+        <header class="cabecalho">
+            <h1>Cálculo de IMC</h1>
+        </header>
+        <div class="caixa">
+            <div class="coluna-esquerda">
+                <div class="linha">
+                    <label>Nome:</label>
+                    <input type="text" id="pessoa" class="input-pessoa">
+                </div>
+
+                <div class="linha">
+                    <label>Peso:</label>
+                    <input type="number" id="peso">
+                </div>
+
+                <div class="linha">
+                    <label>Altura:</label>
+                    <input type="number" id="altura">
+                </div>
+                <button class="calcularImc" onclick="imc()">Calcular IMC</button>
+            </div>
+            
+            <div class="resultado-caixa">
+                <span id="resultado"></span>
+            </div>
+        </div>
+        <script>
+        function imc(){
+            let pessoa = document.getElementById("pessoa").value;
+            let peso = document.getElementById("peso").value;
+            let altura = document.getElementById("altura").value;
+            let resultado = peso/(altura*altura)
+            
+            if(!pessoa || !peso || !altura){
+                document.getElementById("resultado").innerHTML="Preencha todos os campos"
+                return;
+            }
+
+            document.getElementById("resultado").innerHTML=`Olá ${pessoa}. O seu IMC é de ${resultado.toFixed(2)}`
+        }
+    </script>
+
+    </body>
+</html>
