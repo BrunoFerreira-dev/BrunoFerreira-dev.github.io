@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atividade 5 - Pré-Matrícula</title>
+</head>
+<body>
+
+<div class="a5-container">
+
+    <div class="a5-title">Escola Virtual</div>
+    <div class="a5-subtitle">Formulário de Pré-Matrícula</div>
+
+    <div class="a5-box">
+        <div class="a5-label">Nome do Aluno:</div>
+        <input id="nomeAluno" class="a5-input" type="text">
+
+        <div class="a5-label">Nascimento (dd/mm/aaaa):</div>
+        <div class="a5-inline">
+            <input id="dia" class="a5-mini" type="text">
+            <span>/</span>
+            <input id="mes" class="a5-mini" type="text">
+            <span>/</span>
+            <input id="ano" class="a5-mini-ano" type="text">
+        </div>
+
+        <div class="a5-label">Nome da Mãe:</div>
+        <input id="nomeMae" class="a5-input" type="text">
+
+        <div class="a5-label">Nome do Pai:</div>
+        <input id="nomePai" class="a5-input" type="text">
+
+        <div class="a5-label">Telefone:</div>
+        <div class="a5-inline">
+            DDD (<input id="ddd" class="a5-mini" type="text">)
+            Tel: <input id="tel" class="a5-mini-ano" type="text">
+            Ramal: <input id="ramal" class="a5-mini" type="text">
+        </div>
+
+        <div class="a5-label">E-Mail:</div>
+        <input id="email" class="a5-input" type="text">
+    </div>
+
+    <div class="a5-box">
+
+        <div class="a5-label">Série:</div>
+        <select id="serie">
+            <option value="pre">pré-escolar</option>
+            <option value="fund1">Fundamental I</option>
+            <option value="fund2">Fundamental II</option>
+            <option value="medio">Ensino Médio</option>
+        </select>
+
+        <div class="a5-label">Turno:</div>
+        <div class="a5-check"><input type="checkbox" id="manha"> Manhã</div>
+        <div class="a5-check"><input type="checkbox" id="tarde"> Tarde</div>
+
+        <div class="a5-label">Atividades Extracurriculares:</div>
+        <div class="a5-check"><input type="checkbox" class="a5-extra" value="Informática"> Informática</div>
+        <div class="a5-check"><input type="checkbox" class="a5-extra" value="Música"> Música</div>
+        <div class="a5-check"><input type="checkbox" class="a5-extra" value="Balet"> Balet</div>
+        <div class="a5-check"><input type="checkbox" class="a5-extra" value="Pintura"> Pintura</div>
+        <div class="a5-check"><input type="checkbox" class="a5-extra" value="Judô"> Judô</div>
+        <div class="a5-check"><input type="checkbox" class="a5-extra" value="Futebol"> Futebol</div>
+
+    </div>
+
+    <div class="a5-buttons">
+        <button onclick="validar()">Enviar Formulário</button>
+        <button onclick="limpar()">Limpar Campos</button>
+    </div>
+
+    <div id="msg"></div>
+
+</div>
+
+
+<script>
+function validar() {
+
+    let msg = document.getElementById("msg");
+    msg.innerHTML = "";
+    msg.className = "";
+
+    if (
+        !nomeAluno.value ||
+        !dia.value || !mes.value || !ano.value ||
+        !nomeMae.value ||
+        !nomePai.value ||
+        !ddd.value ||
+        !tel.value ||
+        !email.value
+    ) {
+        msg.className = "a5-error";
+        msg.innerHTML = "Preencha todos os campos obrigatórios.";
+        return;
+    }
+
+    let d = Number(dia.value);
+    let m = Number(mes.value);
+    let a = Number(ano.value);
+
+    if (d < 1 || d > 31 || m < 1 || m > 12 || a < 1900) {
+        msg.className = "a5-error";
+        msg.innerHTML = "Data de nascimento inválida.";
+        return;
+    }
+
+    if (email.value.indexOf("@") === -1 || email.value.indexOf(".") === -1) {
+        msg.className = "a5-error";
+        msg.innerHTML = "E-mail inválido.";
+        return;
+    }
+
+    let dddsValidos = [
+        "11","12","13","14","15","16","17","18","19",
+        "21","22","24","27","28",
+        "31","32","33","34","35","37","38",
+        "41","42","43","44","45","46",
+        "47","48","49",
+        "51","53","54","55",
+        "61","62","63","64","65","66","67",
+        "68","69",
+        "71","73","74","75","77","79",
+        "81","82","83","84","85","86","87","88","89",
+        "91","92","93","94","95","96","97","98","99"
+    ];
+
+    if (dddsValidos.indexOf(ddd.value) === -1) {
+        msg.className = "a5-error";
+        msg.innerHTML = "DDD inválido.";
+        return;
+    }
+
+    let extras = document.getElementsByClassName("a5-extra");
+    let contador = 0;
+
+    for (let i = 0; i < extras.length; i++) {
+        if (extras[i].checked) contador++;
+    }
+
+    if (contador > 3) {
+        msg.className = "a5-error";
+        msg.innerHTML = "Escolha no máximo 3 atividades extracurriculares.";
+        return;
+    }
+
+    msg.className = "a5-success";
+    msg.innerHTML = "Cadastro realizado com sucesso!";
+}
+
+
+function limpar() {
+    let inputs = document.getElementsByTagName("input");
+    for (let i = 0; i < inputs.length; i++) {
+        if (inputs[i].type === "text") {
+            inputs[i].value = "";
+        }
+        if (inputs[i].type === "checkbox") {
+            inputs[i].checked = false;
+        }
+    }
+
+    document.getElementById("msg").innerHTML = "";
+    document.getElementById("msg").className = "";
+}
+</script>
+
+</body>
+</html>
+

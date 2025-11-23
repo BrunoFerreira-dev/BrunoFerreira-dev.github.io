@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atividade 06</title>
+</head>
+<body>
+
+<div class="a6-container">
+
+    <h1>Controle de Gastos</h1>
+
+    <div class="a6-box">
+        <h3>Inserir Gasto</h3>
+
+        Categoria:
+        <input type="text" id="a6-cat"><br><br>
+
+        Valor:
+        <input type="number" id="a6-valor"><br><br>
+
+        Data (dd/mm/aaaa):
+        <input type="text" id="a6-dia" size="2"> /
+        <input type="text" id="a6-mes" size="2"> /
+        <input type="text" id="a6-ano" size="4"><br><br>
+
+        <div class="a6-buttons">
+            <button onclick="a6_adicionar()">Adicionar</button>
+            <button onclick="a6_calcular()">Calcular</button>
+        </div>
+    </div>
+
+    <div class="a6-box">
+        <h3>Tabela de Gastos</h3>
+
+        <table class="a6-tabela" id="a6-tabela">
+            <tr>
+                <th>Categoria</th>
+                <th>Data</th>
+                <th>Valor</th>
+            </tr>
+        </table>
+    </div>
+
+    <div class="a6-box" id="a6-resumo">
+        <h3>Resumo</h3>
+
+        <p id="a6-total"></p>
+        <p id="a6-totalMes"></p>
+        <p id="a6-totalCat"></p>
+    </div>
+
+</div>
+
+<script>
+    let a6_gastos = [];
+
+    function a6_adicionar() {
+        let cat = document.getElementById("a6-cat").value;
+        let valor = Number(document.getElementById("a6-valor").value);
+        let dia = document.getElementById("a6-dia").value;
+        let mes = document.getElementById("a6-mes").value;
+        let ano = document.getElementById("a6-ano").value;
+
+        if (!cat || !valor || !dia || !mes || !ano) {
+            alert("Preencha tudo antes de adicionar!");
+            return;
+        }
+
+        let data = dia + "/" + mes + "/" + ano;
+
+        a6_gastos.push({
+            categoria: cat,
+            valor: valor,
+            mes: mes,
+            data: data
+        });
+
+        let tabela = document.getElementById("a6-tabela");
+        let linha = "<tr><td>" + cat + "</td><td>" + data + "</td><td>" + valor.toFixed(2) + "</td></tr>";
+        tabela.innerHTML += linha;
+
+        document.getElementById("a6-cat").value = "";
+        document.getElementById("a6-valor").value = "";
+        document.getElementById("a6-dia").value = "";
+        document.getElementById("a6-mes").value = "";
+        document.getElementById("a6-ano").value = "";
+    }
+
+
+    function a6_calcular() {
+        if (a6_gastos.length === 0) {
+            alert("Nenhum gasto adicionado!");
+            return;
+        }
+
+        let total = 0;
+        for (let i = 0; i < a6_gastos.length; i++) {
+            total += a6_gastos[i].valor;
+        }
+
+        let mesEscolhido = a6_gastos[0].mes;
+        let totalMes = 0;
+        for (let i = 0; i < a6_gastos.length; i++) {
+            if (a6_gastos[i].mes === mesEscolhido) {
+                totalMes += a6_gastos[i].valor;
+            }
+        }
+
+        let catEscolhida = a6_gastos[0].categoria;
+        let totalCat = 0;
+        for (let i = 0; i < a6_gastos.length; i++) {
+            if (a6_gastos[i].categoria === catEscolhida) {
+                totalCat += a6_gastos[i].valor;
+            }
+        }
+
+        document.getElementById("a6-total").innerHTML = "Total: R$ " + total.toFixed(2);
+        document.getElementById("a6-totalMes").innerHTML = "Total no Mês " + mesEscolhido + ": R$ " + totalMes.toFixed(2);
+        document.getElementById("a6-totalCat").innerHTML = "Total de gastos com " + catEscolhida + ": R$ " + totalCat.toFixed(2);
+
+        document.getElementById("a6-resumo").style.display = "block";
+    }
+</script>
+
+</body>
+</html>
