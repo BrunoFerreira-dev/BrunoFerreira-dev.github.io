@@ -327,3 +327,128 @@ main {
     flex-direction: row;
     gap: 20px;
 }
+/****************************** Atividade 5 *****/
+.a5-container {
+    margin: 20px auto; 
+    display: block;
+}
+
+.a5-container {
+    width: 600px;
+    margin: 20px auto;
+    border: 1px solid #555;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+.a5-title {
+    text-align: center;
+    font-size: 26px;
+    font-weight: bold;
+ }
+
+.a5-subtitle {
+    text-align: center;
+    font-size: 20px;
+    margin-bottom: 20px;
+ }
+
+.a5-box {
+    border: 1px solid #777;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.a5-label {
+    display: block;
+    margin: 6px 0 2px;
+    font-weight: bold;
+}
+
+.a5-input {
+    width: 98%;
+    padding: 4px;
+}
+
+.a5-mini {
+    width: 50px;
+    text-align: center;
+}
+
+.a5-mini-ano {
+    width: 70px;
+    text-align: center;
+}
+
+.a5-check {
+    display: flex;
+    align-items: center;
+    margin: 3px 0;
+}
+
+.a5-check input {
+    width: 15px;
+    height: 15px;
+    margin-right: 6px;
+}
+
+.a5-buttons {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.a5-buttons button {
+    padding: 8px 20px;
+    margin: 5px;
+}
+
+.a5-error {
+    color: red;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.a5-success {
+    color: green;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.a5-inline {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/****************************** Atividade 6 *****/
+.a6-container {
+    width: 600px;
+    margin: auto;
+    font-family: Arial;
+}
+
+.a6-box {
+    border: 1px solid #444;
+    padding: 15px;
+    margin-top: 20px;
+}
+
+.a6-tabela {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.a6-tabela th, .a6-tabela td {
+    border: 1px solid #888;
+    padding: 5px;
+    text-align: center;
+}
+
+#a6-resumo {
+    display: none;
+}
+
+.a6-buttons {
+     margin-top: 10px;
+}

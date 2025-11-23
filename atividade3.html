@@ -52,45 +52,45 @@
                     <div class="peca">
                         <label for="" class="peca-titulo">Braços</label>
                         <div class="controle">
-                            <buttom class="controle-ajuste">-</buttom>
+                            <button type="button" class="controle-ajuste">-</button>
                             <input type="text" class="controle-contador" value="00">
-                            <buttom class="controle-ajuste">+</buttom>
+                            <button type="button" class="controle-ajuste">+</button>
                         </div>
                     </div>
                     <hr class="linha">
                     <div class="peca">
                         <label for="" class="peca-titulo">Blindagem</label>
                         <div class="controle">
-                            <buttom class="controle-ajuste">-</buttom>
+                            <button type="button" class="controle-ajuste">-</button>
                             <input type="text" class="controle-contador" value="00">
-                            <buttom class="controle-ajuste">+</buttom>
+                            <button type="button" class="controle-ajuste">+</button>
                         </div>
                     </div>
                     <hr class="linha">
                     <div class="peca">
                         <label for="" class="peca-titulo">Núcleos</label>
                         <div class="controle">
-                            <buttom class="controle-ajuste">-</buttom>
+                            <button type="button" class="controle-ajuste">-</button>
                             <input type="text" class="controle-contador" value="00">
-                            <buttom class="controle-ajuste">+</buttom>
+                            <button type="button" class="controle-ajuste">+</button>
                         </div>
                     </div>
                     <hr class="linha">
                     <div class="peca">
                         <label for="" class="peca-titulo">Pernas</label>
                         <div class="controle">
-                            <buttom class="controle-ajuste">-</buttom>
+                            <button type="button" class="controle-ajuste">-</button>
                             <input type="text" class="controle-contador" value="00">
-                            <buttom class="controle-ajuste">+</buttom>
+                            <button type="button" class="controle-ajuste">+</button>
                         </div>
                     </div>
                     <hr class="linha">
                     <div class="peca">
                         <label for="" class="peca-titulo">Foguetes</label>
                         <div class="controle">
-                            <buttom class="controle-ajuste">-</buttom>
+                            <button type="button" class="controle-ajuste">-</button>
                             <input type="text" class="controle-contador" value="00">
-                            <buttom class="controle-ajuste">+</buttom>
+                            <button type="button" class="controle-ajuste">+</button>
                         </div>
                     </div>
                 </div>
@@ -99,10 +99,10 @@
                     <button type="button" class="producao" id="passarFrente">>></button>
                     <input type="submit" value="Iniciar produção" class="producao" id="producao">
                 </div>
-            </form>
+        </form>
         </section>
     </main>
-    <script>
+<script>
 
     let robos=["robotron-azul.png", "robotron-amarelo.png", "robotron-branco.png", "robotron-preto.png", "robotron-rosa.png", "robotron-vermelho.png"]
         let imagemAtual=0;
@@ -110,21 +110,46 @@
     function passarRobo(){
         const robo = document.getElementById("robozao");
         robo.src = "img/" + robos[imagemAtual];
-    }
+}
     document.getElementById("passarFrente").onclick = () =>{
         imagemAtual++;
         if(imagemAtual >= robos.length){
             imagemAtual = 0; 
         }
         passarRobo()
-    }
+}
     document.getElementById("passarAtras").onclick = () =>{
         imagemAtual--;
         if(imagemAtual < 0){
             imagemAtual = robos.length-1;
         }
         passarRobo()
-    } 
+} 
+    let botoes = document.getElementsByClassName("controle-ajuste");
+
+    for (let i = 0; i < botoes.length; i++) {
+    botoes[i].addEventListener("click", function() {
+
+        let controle = botoes[i].parentElement;
+
+        let input = controle.getElementsByClassName("controle-contador")[0];
+
+        let valor = Number(input.value);
+
+        if (botoes[i].textContent === "+") {
+            valor++;
+        } else {
+            valor--;
+        }
+
+        if (valor < 0) valor = 0;
+        if (valor > 10) valor = 10;
+
+        input.value = valor;
+    });
+}
+    
+
 </script>
 </body>
 </html>
