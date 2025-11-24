@@ -108,7 +108,7 @@
         let meses = []
         let totalMes = []
         for (let i = 0; i < a6_gastos.length; i++) {
-            let mesAtual = a6_gastos[i].meses;
+            let mesAtual = a6_gastos[i].mes;
             let indiceMes = meses.indexOf(mesAtual);
             if(indiceMes === -1){
                 meses.push(mesAtual)
@@ -122,26 +122,26 @@
         let categoria = []
         let totalCat = []
         for (let i = 0; i < a6_gastos.length; i++) {
-            let catAtual = a6_gastos[i].valor;
+            let catAtual = a6_gastos[i].categoria;
             let indiceCat = categoria.indexOf(catAtual);
-            if(indiceMes === -1){
+            if(indiceCat === -1){
                 categoria.push(catAtual)
-                totalCat = (a6_gastos[i].valor)
+                totalCat.push(a6_gastos[i].valor)
             }
             else{
-                totalCat[indiceMes] += a6_gastos[i].valor;
+                totalCat[indiceCat] += a6_gastos[i].valor;
             }
         }
 
         document.getElementById("a6-total").innerHTML = "Total: R$ " + total.toFixed(2);
 
-        let textoMes
+        let textoMes = ""
         for(let i = 0; i < meses.length; i++){
             textoMes += "Mês:"+ meses[i] + ": R$" + totalMes[i].toFixed(2) + "<br>"
         }
-        let textoCat
+        let textoCat = ""
         for(let i = 0; i < categoria.length; i++){
-            textoCat += "Mês:"+ categoria[i] + ": R$" + totalCat[i].toFixed(2) + "<br>"
+            textoCat += categoria[i] + ": R$" + totalCat[i].toFixed(2) + "<br>"
         }
 
         document.getElementById("a6-totalMes").innerHTML = textoMes
@@ -152,5 +152,6 @@
 
 </body>
 </html>
+
 
 
