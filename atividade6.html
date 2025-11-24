@@ -109,7 +109,7 @@
         let totalMes = []
         for (let i = 0; i < a6_gastos.length; i++) {
             let mesAtual = a6_gastos[i].meses;
-            let indiceMes = indexOf(mesAtual);
+            let indiceMes = meses.indexOf(mesAtual);
             if(indiceMes === -1){
                 meses.push(mesAtual)
                 totalMes.push(a6_gastos[i].valor)
@@ -123,7 +123,7 @@
         let totalCat = []
         for (let i = 0; i < a6_gastos.length; i++) {
             let catAtual = a6_gastos[i].valor;
-            let indiceCat = indexOf(catAtual);
+            let indiceCat = categoria.indexOf(catAtual);
             if(indiceMes === -1){
                 categoria.push(catAtual)
                 totalCat = (a6_gastos[i].valor)
@@ -152,4 +152,5 @@
 
 </body>
 </html>
+
 
