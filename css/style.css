@@ -452,3 +452,34 @@ main {
 .a6-buttons {
      margin-top: 10px;
 }
+/****************************** Inicio Atividade Final *****/
+.card {
+  background-color: #3d0008 !important;
+  color: #f8f9fa !important; 
+}
+.card-img-top {
+  height: 200px;
+  object-fit: cover;
+}
+.accordion-button {
+  background-color: #f8f9fa;
+  color: #333;
+  font-weight: bold;
+}
+.accordion-button:not(.collapsed) {
+  background-color: #d3d3d3;
+}
+.galeria-img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+figure {
+  text-align: center;
+}
+figcaption {
+  margin-top: 6px;
+  font-size: 0.9rem;
+  color: #ccc;
+}
