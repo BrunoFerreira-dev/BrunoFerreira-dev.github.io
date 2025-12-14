@@ -68,6 +68,10 @@
             alert("Preencha tudo antes de adicionar!");
             return;
         }
+        if(dia < 1 || dia > 31 || mes < 1 || mes > 12 || ano < 1900 || ano > 2025){
+            alert("Data inválida!")
+            return;
+        }
 
         let data = dia + "/" + mes + "/" + ano;
 
@@ -101,29 +105,53 @@
             total += a6_gastos[i].valor;
         }
 
-        let mesEscolhido = a6_gastos[0].mes;
-        let totalMes = 0;
+        let meses = []
+        let totalMes = []
         for (let i = 0; i < a6_gastos.length; i++) {
-            if (a6_gastos[i].mes === mesEscolhido) {
-                totalMes += a6_gastos[i].valor;
+            let mesAtual = a6_gastos[i].mes;
+            let indiceMes = meses.indexOf(mesAtual);
+            if(indiceMes === -1){
+                meses.push(mesAtual)
+                totalMes.push(a6_gastos[i].valor)
+            }
+            else{
+                totalMes[indiceMes] += a6_gastos[i].valor;
             }
         }
 
-        let catEscolhida = a6_gastos[0].categoria;
-        let totalCat = 0;
+        let categoria = []
+        let totalCat = []
         for (let i = 0; i < a6_gastos.length; i++) {
-            if (a6_gastos[i].categoria === catEscolhida) {
-                totalCat += a6_gastos[i].valor;
+            let catAtual = a6_gastos[i].categoria;
+            let indiceCat = categoria.indexOf(catAtual);
+            if(indiceCat === -1){
+                categoria.push(catAtual)
+                totalCat.push(a6_gastos[i].valor)
+            }
+            else{
+                totalCat[indiceCat] += a6_gastos[i].valor;
             }
         }
 
         document.getElementById("a6-total").innerHTML = "Total: R$ " + total.toFixed(2);
-        document.getElementById("a6-totalMes").innerHTML = "Total no Mês " + mesEscolhido + ": R$ " + totalMes.toFixed(2);
-        document.getElementById("a6-totalCat").innerHTML = "Total de gastos com " + catEscolhida + ": R$ " + totalCat.toFixed(2);
 
+        let textoMes = ""
+        for(let i = 0; i < meses.length; i++){
+            textoMes += "Mês:"+ meses[i] + ": R$" + totalMes[i].toFixed(2) + "<br>"
+        }
+        let textoCat = ""
+        for(let i = 0; i < categoria.length; i++){
+            textoCat += categoria[i] + ": R$" + totalCat[i].toFixed(2) + "<br>"
+        }
+
+        document.getElementById("a6-totalMes").innerHTML = textoMes
+        document.getElementById("a6-totalCat").innerHTML = textoCat
         document.getElementById("a6-resumo").style.display = "block";
     }
 </script>
 
 </body>
 </html>
+
+
+
